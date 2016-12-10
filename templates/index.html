@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+<title>Indian Music Kit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+
+
+
+<body>
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">Tabla</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Tabla Low</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">Veena</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">Sitar</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">Harmonium</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">Harmonium 2</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">Dholak</span>
+    </div>
+  </div>
+
+<audio data-key="65" src="Sounds/Tabla.mp3"></audio>
+<audio data-key="83" src="Sounds/Tabla Low.mp3"></audio>
+<audio data-key="68" src="Sounds/Veena.mp3"></audio>
+<audio data-key="70" src="Sounds/Sitar.mp3"></audio>
+<audio data-key="71" src="Sounds/Harmonium1.mp3"></audio>
+<audio data-key="72" src="Sounds/Harmonium2.mp3"></audio>
+<audio data-key="74" src="Sounds/Dholak.mp3"></audio>
+<p>Copyright 2016<br/> Designed by Suraj Pai</p>
+
+
+
+
+
+<script>
+  window.addEventListener("keydown",function(e){
+    const audio=document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key=document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+
+    if (!audio) return;
+    console.log(key);
+    key.classList.add('playing');
+    console.log(audio);
+    audio.play();
+    audio.currentTime=0;
+
+  });
+  function removeTransition(e){
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+
+
+  }
+  const keys=document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener("transitionend",removeTransition));
+
+
+
+</script>
+
+
+</body>
