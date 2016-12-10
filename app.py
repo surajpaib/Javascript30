@@ -6,9 +6,9 @@ app.debug=True
 
 
 
-@app.route('/indianmusic')
+@app.route('/indianmusic',method='GET')
 def indianmusic():
-    render_template(index.html)
+    return render_template(index.html)
 
 
 if __name__=="__main__":
